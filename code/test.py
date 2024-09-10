@@ -1,3 +1,13 @@
+from datetime import datetime
+
+# Get the current date and time
+current_datetime = datetime.now()
+
+# Print the current date and time in a specific format
+formatted_datetime = current_datetime.strftime("%Y-%m-%d %H:%M:%S")
+print("Current date and time:", formatted_datetime)
+
+
 
 A word cloud is a visual representation of text data where the size of each word corresponds to its frequency or importance in the text. Here's how to interpret the size of the words in a word cloud:
 
