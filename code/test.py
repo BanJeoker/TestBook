@@ -12,6 +12,32 @@ df = pd.DataFrame(data)
 # Pivot the DataFrame to get num_words for each section in a single row
 pivot_df = df.pivot(index='name', columns='section', values='num_words').reset_index()
 
+# Calculate the pairwise correlations
+correlations = {
+    ('Section1', 'Section2'): pivot_df['Section1'].corr(pivot_df['Section2']),
+    ('Section1', 'Section3'): pivot_df['Section1'].corr(pivot_df['Section3']),
+    ('Section2', 'Section3'): pivot_df['Section2'].corr(pivot_df['Section3'])
+}
+
+# Print the correlation values
+for (section1, section2), correlation in correlations.items():
+    print(f"Correlation between num_words in {section1} and {section2}: {correlation:.2f}")
+
+
+import pandas as pd
+
+# Sample DataFrame
+data = {
+    'name': ['doc1', 'doc1', 'doc1', 'doc2', 'doc2', 'doc2'],
+    'num_words': [100, 150, 200, 120, 180, 250],
+    'section': ['Section1', 'Section2', 'Section3', 'Section1', 'Section2', 'Section3']
+}
+
+df = pd.DataFrame(data)
+
+# Pivot the DataFrame to get num_words for each section in a single row
+pivot_df = df.pivot(index='name', columns='section', values='num_words').reset_index()
+
 # Calculate the correlation between Section1 and Section2
 correlation = pivot_df['Section1'].corr(pivot_df['Section2'])
 
