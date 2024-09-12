@@ -1,4 +1,27 @@
 import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Sample DataFrame
+data = {
+    'cluster': ['0', '0', '0', '1', '1', '2', '2', '2', '0', '1'],
+    'topic': ['A', 'B', 'A', 'A', 'C', 'B', 'B', 'C', 'C', 'A']
+}
+df = pd.DataFrame(data)
+
+# Create a crosstab to count occurrences of each combination of cluster and topic
+crosstab = pd.crosstab(df['cluster'], df['topic'])
+
+# Plot heatmap
+plt.figure(figsize=(8, 6))
+sns.heatmap(crosstab, annot=True, cmap='YlGnBu', fmt='d')
+plt.title('Heatmap of Clusters vs. Topics')
+plt.xlabel('Topic')
+plt.ylabel('Cluster')
+plt.show()
+
+
+import pandas as pd
 
 # Sample DataFrame
 data = {
