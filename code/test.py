@@ -4,6 +4,37 @@ import matplotlib.pyplot as plt
 # Assuming your DataFrame is named 'df' and the four columns are named:
 # 'number_a', 'number_b', 'number_c', 'number_d'
 
+# Set up a figure with two subplots, side by side (1 row, 2 columns)
+fig, axes = plt.subplots(1, 2, figsize=(14, 6))
+
+# Plot density for 'a' and 'b' in the first subplot
+sns.kdeplot(df['number_a'], label='Number of A', fill=True, ax=axes[0])
+sns.kdeplot(df['number_b'], label='Number of B', fill=True, ax=axes[0])
+axes[0].set_title('Density Plot of A and B')
+axes[0].set_xlabel('Value')
+axes[0].set_ylabel('Density')
+axes[0].legend()
+
+# Plot density for 'c' and 'd' in the second subplot
+sns.kdeplot(df['number_c'], label='Number of C', fill=True, ax=axes[1])
+sns.kdeplot(df['number_d'], label='Number of D', fill=True, ax=axes[1])
+axes[1].set_title('Density Plot of C and D')
+axes[1].set_xlabel('Value')
+axes[1].set_ylabel('Density')
+axes[1].legend()
+
+# Display the plot
+plt.tight_layout()
+plt.show()
+
+
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Assuming your DataFrame is named 'df' and the four columns are named:
+# 'number_a', 'number_b', 'number_c', 'number_d'
+
 # Set up the plot
 plt.figure(figsize=(10, 6))
 
