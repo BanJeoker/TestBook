@@ -1,3 +1,30 @@
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Assuming your DataFrame is named 'df' and the four columns are named:
+# 'number_a', 'number_b', 'number_c', 'number_d'
+
+# Set up the plot
+plt.figure(figsize=(10, 6))
+
+# Plot density for each metric
+sns.kdeplot(df['number_a'], label='Number of A', fill=True)
+sns.kdeplot(df['number_b'], label='Number of B', fill=True)
+sns.kdeplot(df['number_c'], label='Number of C', fill=True)
+sns.kdeplot(df['number_d'], label='Number of D', fill=True)
+
+# Add labels and title
+plt.xlabel('Value')
+plt.ylabel('Density')
+plt.title('Density Plot of Document Metrics')
+
+# Show the legend
+plt.legend()
+
+# Display the plot
+plt.show()
+
+
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
