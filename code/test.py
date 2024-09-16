@@ -10,6 +10,8 @@ fig, axes = plt.subplots(1, 2, figsize=(14, 6))
 # Plot density for 'a' and 'b' in the first subplot
 sns.kdeplot(df['number_a'], label='Number of A', fill=True, ax=axes[0])
 sns.kdeplot(df['number_b'], label='Number of B', fill=True, ax=axes[0])
+axes[0].axvline(df['number_a'].mean(), color='blue', linestyle='--', label='Mean A')
+axes[0].axvline(df['number_b'].mean(), color='orange', linestyle='--', label='Mean B')
 axes[0].set_title('Density Plot of A and B')
 axes[0].set_xlabel('Value')
 axes[0].set_ylabel('Density')
