@@ -1,3 +1,11 @@
+df = pd.DataFrame(data)
+
+# Group by 'group' column and sum 'value1' and 'value2'
+new_df = df.groupby('group', as_index=False).agg({'value1': 'sum', 'value2': 'sum'})
+
+print(new_df)
+
+
 import seaborn as sns
 import matplotlib.pyplot as plt
 
