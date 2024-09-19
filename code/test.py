@@ -1,3 +1,18 @@
+from IPython.display import display, HTML
+
+# Your original text
+text = "This is the revenue data. The revenue has increased this quarter."
+
+# Replace 'revenue' with a highlighted version using HTML
+highlighted_text = text.replace(
+    'revenue',
+    '<span style="background-color: yellow; font-weight: bold;">revenue</span>'
+)
+
+# Display the formatted HTML
+display(HTML(highlighted_text))
+
+
 df = pd.DataFrame(data)
 
 # Group by 'group' column and sum 'value1' and 'value2'
