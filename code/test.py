@@ -10,6 +10,8 @@ highlighted_text = text.replace(
 )
 
 # Display the formatted HTML
+html_output = f'<div style="white-space: nowrap;">{highlighted_text}</div>'
+
 display(HTML(highlighted_text))
 
 
