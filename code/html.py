@@ -5,8 +5,11 @@ from nbconvert import HTMLExporter
 with open('notebook.ipynb') as f:
     notebook = nbf.read(f, as_version=4)
 
-# Filter out code cells, keeping only markdown and output cells
-notebook.cells = [cell for cell in notebook.cells if cell.cell_type != 'code']
+# Loop through all cells and remove the input from code cells but keep their outputs
+for cell in notebook.cells:
+    if cell.cell_type == 'code':
+        # Keep the outputs, but clear the input (code)
+        cell['source'] = ''
 
 # Convert the modified notebook to HTML
 html_exporter = HTMLExporter()
