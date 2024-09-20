@@ -1,4 +1,13 @@
+
+{%- extends 'lab/index.html.j2' -%}
+
+{% block input %}
+<!-- This block will hide code cells -->
+{%- endblock input %}
+
+
 from IPython.display import display, HTML
+
 
 # Your original text
 text = "This is the revenue data. The revenue has increased this quarter."
