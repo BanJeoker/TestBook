@@ -51,3 +51,19 @@ class RAG:
 
         # Create the ensemble retriever, which will sort all returned documents by order based on its sorting criteria
         self.ensemble_retriever = EnsembleRetriever(retrievers=[self.faiss_retriever, self.bm25_retriever], weights=[0.5, 0.5])
+
+
+import pandas as pd
+
+# Sample DataFrame with 53 rows (replace this with your actual DataFrame)
+data = {'A': [1, 2, 3, 4, 5], 'B': [6, 7, 8, 9, 10]}  # Example DataFrame
+df = pd.DataFrame(data)
+
+# Duplicate the DataFrame 100 times
+df_repeated = pd.concat([df] * 100, ignore_index=True)
+
+# Create the 'id' column with row numbers (1 to 5300)
+df_repeated['id'] = df_repeated.index + 1
+
+# Display the resulting DataFrame
+print(df_repeated)
