@@ -67,3 +67,27 @@ df_repeated['id'] = df_repeated.index + 1
 
 # Display the resulting DataFrame
 print(df_repeated)
+
+
+import pandas as pd
+import json
+
+# Sample DataFrame with 'id' and 'embeddings' (replace this with your actual DataFrame)
+data = {'id': [1, 2, 3], 'embeddings': ['embedding1', 'embedding2', 'embedding3']}
+df = pd.DataFrame(data)
+
+# Define the filename for the JSONL file
+filename = 'output.jsonl'
+
+# Open the file in write mode
+with open(filename, 'w') as f:
+    # Iterate through each row of the DataFrame
+    for _, row in df.iterrows():
+        # Create a dictionary for each row
+        json_line = {"id": row['id'], "embedding": row['embeddings']}
+        # Write the JSON dictionary as a JSONL (one line per dictionary)
+        f.write(json.dumps(json_line) + '\n')
+
+# The 'output.jsonl' file will be created in your current directory.
+print(f"JSONL file '{filename}' created successfully!")
+
