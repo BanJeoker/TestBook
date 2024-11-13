@@ -91,3 +91,4 @@ with open(filename, 'w') as f:
 # The 'output.jsonl' file will be created in your current directory.
 print(f"JSONL file '{filename}' created successfully!")
 
+https://github.com/Sahilvohra58/gen-ai-on-google-cloud/blob/main/RAG_LLMOps_with_GCP.ipynb
