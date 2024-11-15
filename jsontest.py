@@ -32,3 +32,16 @@ from IPython.display import Image, display
 # Display a local image
 display(Image(filename='keychain_no_keys.png'))
 
+import matplotlib.pyplot as plt
+
+# Your list of numbers
+numbers = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5]
+
+# Create the histogram
+plt.hist(numbers, bins=5, edgecolor='black')  # `bins` specifies the number of bins
+plt.title('Histogram of Numbers')
+plt.xlabel('Value')
+plt.ylabel('Frequency')
+
+# Show the plot
+plt.show()
