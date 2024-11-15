@@ -26,3 +26,9 @@ Deployed Index (the “key” that unlocks a specific door): Each deployed index
 
 
 '''
+
+from IPython.display import Image, display
+
+# Display a local image
+display(Image(filename='keychain_no_keys.png'))
+
