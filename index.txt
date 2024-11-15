@@ -1,0 +1,26 @@
+1. Index
+What It Is: The core data structure that stores your vector embeddings. It is created from your data (e.g., a JSON file in a Cloud Storage bucket) and optimized for similarity search operations.
+Purpose: Holds the vectors you want to search through.
+Key Feature: An index is static once created, meaning you cannot modify it directly but can replace it with a new index.
+Analogy: The door that stores the data you want to access.
+
+2. Index Endpoint
+What It Is: A managed service that serves as an access point to interact with one or more deployed indices.
+Purpose: Acts as the communication layer between your application and the vector search service.
+Key Feature: One endpoint can handle multiple deployed indices, enabling flexibility in managing vector search workflows.
+Analogy: The key ring that holds keys (deployed indices) to access different doors (indices).
+
+3. Deployed Index
+What It Is: An operational instance of an index deployed to an endpoint. It serves as the bridge between the index and the endpoint, allowing queries to the vector data.
+Purpose: Connects an index to an endpoint for active querying. You assign a deployed index ID to identify it.
+Key Feature: You can deploy multiple indices (keys) to the same endpoint or even deploy the same index multiple times with different configurations.
+Analogy: The key that unlocks a specific door (index), added to the key ring (endpoint).
+
+Relationships Between Them
+Index is the dataset (vector data) you want to search.
+Index Endpoint is the service (access point) that facilitates interaction with the deployed index.
+Deployed Index connects an index to the endpoint, making it operational and ready to handle search queries.
+This structure provides modularity:
+
+Multiple indices can be deployed to the same endpoint.
+The same index can be deployed multiple times with different configurations.
