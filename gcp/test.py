@@ -1,17 +1,39 @@
-from google.cloud import storage
+import pandas as pd
 
-# Initialize the GCS client
-client = storage.Client()
+# Original DataFrame with text-based IDs and made-up date strings for even columns
+data_with_text_ids = {
+    "id1": ["A1", "B1", "C1", "D1", "E1"],
+    "2023-01-01": [10, 20, 30, 40, 50],
+    "id2": ["A2", "B2", "C2", "D2", "E2"],
+    "2023-02-01": [15, 25, 35, 45, 55],
+    "id3": ["A3", "B3", "C3", "D3", "E3"],
+    "2023-03-01": [12, 22, 32, 42, 52],
+    "id4": ["A4", "B4", "C4", "D4", "E4"],
+    "2023-04-01": [18, 28, 38, 48, 58],
+    "id5": ["A5", "B5", "C5", "D5", "E5"],
+    "2023-05-01": [14, 24, 34, 44, 54]
+}
 
-# Define the bucket name and folder name
-bucket_name = "your-bucket-name"
-folder_name = "your-folder-name/"  # Add a trailing slash to indicate a folder
+# Create the DataFrame
+df = pd.DataFrame(data_with_text_ids)
 
-# Get the bucket
-bucket = client.bucket(bucket_name)
+# Initialize an empty dictionary to store the results
+result_dict_text = {}
 
-# Create a "dummy" blob to represent the folder
-blob = bucket.blob(folder_name)
-blob.upload_from_string('')  # Upload an empty string as the content
+# Iterate through each row and extract the pairs
+for index, row in df.iterrows():
+    # Loop through pairs of (id, data) columns
+    for i in range(0, len(df.columns), 2):
+        key = row[df.columns[i]]  # Odd columns are the keys (ID)
+        value = str(row[df.columns[i+1]])  # Convert the data value to string
+        column_name = df.columns[i+1]  # Column name for data
 
-print(f"Folder '{folder_name}' created in bucket '{bucket_name}'.")
+        # Check if the key already exists in the dictionary
+        if key not in result_dict_text:
+            result_dict_text[key] = []
+
+        # Append the value + column name (date string) to the list of the corresponding key
+        result_dict_text[key].append(value + column_name)
+
+# Display the resulting dictionary with text-based IDs and date-based column names
+result_dict_text
