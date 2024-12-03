@@ -22,3 +22,22 @@ for metric in metrics:
 
 # Output the result
 print(elevator_analysis)
+
+
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+def task(n):
+    return n * n
+
+with ThreadPoolExecutor() as executor:
+    # Submit tasks
+    futures = [executor.submit(task, i) for i in range(5)]
+
+    # Process futures as they complete
+    for future in as_completed(futures):
+        try:
+            result = future.result()  # Retrieve result
+            print(f"Task completed with result: {result}")
+        except Exception as e:
+            print(f"Task raised an exception: {e}")
+
