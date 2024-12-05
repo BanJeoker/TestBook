@@ -89,3 +89,19 @@ df['diff_days'] = df.groupby('id')['date1'].diff().fillna(pd.Timedelta(days=-1))
 
 print(df)
 
+
+
+mask = np.triu(np.ones_like(corr_matrix, dtype=bool))
+
+# Flatten the matrix and filter by high correlation values
+high_corr = corr_matrix.where(mask).stack().reset_index(name='correlation')
+
+# Filter out correlations less than a threshold, e.g., 0.8
+high_corr = high_corr[high_corr['correlation'] > 0.8]
+
+# Sort by correlation in descending order
+high_corr_sorted = high_corr.sort_values(by='correlation', ascending=False)
+
+# Print the high correlation pairs
+print(high_corr_sorted)
+
