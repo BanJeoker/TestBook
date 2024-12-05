@@ -246,3 +246,18 @@ importance_scores = xg_reg.get_booster().get_score(importance_type='weight')
 # Display feature importance
 print("Feature Importance Scores:")
 print(importance_scores)
+
+
+
+In XGBoost, the F-score (also called feature score or frequency score) is a measure of feature importance that indicates how many times a feature was used in a decision tree split, i.e., how many times a feature contributed to reducing the loss function. The F-score is calculated as the number of times a feature is used in the decision trees built by the model.
+
+How the F-score is calculated:
+The F-score is calculated by counting the number of times a feature is used in a split (a node in the tree) across all trees in the model.
+It reflects the contribution of each feature to the model's predictive performance.
+Higher F-scores indicate that a feature has been used more frequently and is more important in the model.
+Importance Types in XGBoost:
+XGBoost provides several ways to measure feature importance, and F-score is one of them. The most commonly used importance types are:
+
+Weight (or F-score): The number of times a feature is used in a split.
+Gain: The average gain of a feature when it is used in a split.
+Cover: The average coverage (the number of samples affected) of a feature when it is used in a split.
