@@ -180,3 +180,35 @@ df_cleaned = df.drop(columns=to_drop)
 print("DataFrame after removing highly correlated columns:")
 print(df_cleaned)
 
+import xgboost as xgb
+import numpy as np
+from sklearn.metrics import mean_squared_error
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+
+# Assuming 'df' is your DataFrame and 'target' is the target column
+# Prepare the features (X) and target (y)
+X = df.drop(columns=['target'])  # Replace 'target' with your target column name
+y = df['target']                 # Replace 'target' with your target column name
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Normalize the data (scaling)
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# Create and train the XGBoost regressor model
+xg_reg = xgb.XGBRegressor(objective='reg:squarederror', random_state=42)
+xg_reg.fit(X_train_scaled, y_train)
+
+# Make predictions
+y_pred = xg_reg.predict(X_test_scaled)
+
+# Calculate RMSE
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+
+# Print RMSE
+print(f"XGBoost Regression RMSE: {rmse:.4f}")
