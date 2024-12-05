@@ -70,3 +70,22 @@ plt.ylabel('Features')
 # Adjust layout and show plot
 plt.tight_layout()
 plt.show()
+
+
+import pandas as pd
+
+# Sample DataFrame
+data = {
+    'id': [1, 1, 1, 2, 2],
+    'date1': ['2020-01-01', '2020-01-03', '2020-01-05', '2020-01-01', '2020-01-04']
+}
+df = pd.DataFrame(data)
+
+# Convert 'date1' to datetime
+df['date1'] = pd.to_datetime(df['date1'])
+
+# Calculate the difference in days within each group
+df['diff_days'] = df.groupby('id')['date1'].diff().fillna(pd.Timedelta(days=-1)).dt.days
+
+print(df)
+
