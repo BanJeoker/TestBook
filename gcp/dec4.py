@@ -212,3 +212,37 @@ rmse = np.sqrt(mse)
 
 # Print RMSE
 print(f"XGBoost Regression RMSE: {rmse:.4f}")
+
+
+import xgboost as xgb
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+
+# Assuming 'df' is your DataFrame and 'target' is the target column
+# Prepare the features (X) and target (y)
+X = df.drop(columns=['target'])  # Replace 'target' with your target column name
+y = df['target']                 # Replace 'target' with your target column name
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Normalize the data (scaling)
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# Create and train the XGBoost regressor model
+xg_reg = xgb.XGBRegressor(objective='reg:squarederror', random_state=42)
+xg_reg.fit(X_train_scaled, y_train)
+
+# Plot feature importance
+xgb.plot_importance(xg_reg, importance_type='weight', max_num_features=10, title="Feature Importance (Weight)")
+plt.show()
+
+# Alternatively, get feature importance as scores
+importance_scores = xg_reg.get_booster().get_score(importance_type='weight')
+
+# Display feature importance
+print("Feature Importance Scores:")
+print(importance_scores)
