@@ -1,3 +1,36 @@
+import matplotlib.pyplot as plt
+
+# Assuming you've already trained 'lr' and 'lasso' and made predictions (as in the previous code)
+# Make predictions on the test set
+lr_preds = lr.predict(X_test_scaled)
+lasso_preds = lasso.predict(X_test_scaled)
+
+# Plot for Linear Regression
+plt.figure(figsize=(12, 6))
+
+# Linear Regression
+plt.subplot(1, 2, 1)
+plt.scatter(y_test, lr_preds, color='blue', alpha=0.5)
+plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], color='red', linestyle='--')  # line for perfect predictions
+plt.title('True vs Predicted - Linear Regression')
+plt.xlabel('True Values')
+plt.ylabel('Predicted Values')
+
+# LASSO Regression
+plt.subplot(1, 2, 2)
+plt.scatter(y_test, lasso_preds, color='green', alpha=0.5)
+plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], color='red', linestyle='--')  # line for perfect predictions
+plt.title('True vs Predicted - LASSO Regression')
+plt.xlabel('True Values')
+plt.ylabel('Predicted Values')
+
+# Show the plots
+plt.tight_layout()
+plt.show()
+
+
+
+
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
