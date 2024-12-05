@@ -37,3 +37,36 @@ lasso_mae = mean_absolute_error(y_test, lasso_preds)
 # Output results
 print(f"Linear Regression MAE: {lr_mae:.4f}")
 print(f"LASSO Regression MAE: {lasso_mae:.4f}")
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Assuming you've already trained your models (lr and lasso from previous code)
+# Get feature names
+feature_names = X.columns
+
+# Get coefficients from Linear Regression and LASSO
+lr_coefficients = lr.coef_
+lasso_coefficients = lasso.coef_
+
+# Plot feature importance
+plt.figure(figsize=(12, 6))
+
+# Linear Regression Feature Importance
+plt.subplot(1, 2, 1)
+plt.barh(feature_names, np.abs(lr_coefficients))
+plt.title('Feature Importance - Linear Regression')
+plt.xlabel('Coefficient Magnitude')
+plt.ylabel('Features')
+
+# LASSO Regression Feature Importance
+plt.subplot(1, 2, 2)
+plt.barh(feature_names, np.abs(lasso_coefficients))
+plt.title('Feature Importance - LASSO Regression')
+plt.xlabel('Coefficient Magnitude')
+plt.ylabel('Features')
+
+# Adjust layout and show plot
+plt.tight_layout()
+plt.show()
