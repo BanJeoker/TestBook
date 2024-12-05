@@ -105,3 +105,45 @@ high_corr_sorted = high_corr.sort_values(by='correlation', ascending=False)
 # Print the high correlation pairs
 print(high_corr_sorted)
 
+
+import pandas as pd
+import numpy as np
+
+# Sample DataFrame
+data = {
+    'A': [1, 2, 3, 4, 5],
+    'B': [5, 4, 3, 2, 1],
+    'C': [1, 3, 2, 5, 4],
+    'D': [10, 20, 30, 40, 50]
+}
+df = pd.DataFrame(data)
+
+# Compute the correlation matrix
+corr_matrix = df.corr()
+
+# Set the threshold for high correlation
+threshold = 0.8
+
+# Create an empty list to store columns to drop
+to_drop = []
+
+# Iterate over the correlation matrix
+for column in corr_matrix.columns:
+    # Get the correlations for the current column
+    corr_values = corr_matrix[column]
+    
+    # Find columns that are highly correlated (greater than the threshold)
+    # and are not the same column (diagonal elements)
+    high_corr_columns = corr_values[(corr_values > threshold) & (corr_values < 1)].index
+    
+    for col in high_corr_columns:
+        # If the column hasn't already been marked for removal, mark it
+        if col not in to_drop:
+            to_drop.append(col)
+
+# Drop the highly correlated columns
+df_cleaned = df.drop(columns=to_drop)
+
+print("DataFrame after removing highly correlated columns:")
+print(df_cleaned)
+
