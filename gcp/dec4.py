@@ -1,3 +1,13 @@
+fig.add_trace(go.Scatter(
+    x=df['date'], 
+    y=df['value'], 
+    mode='markers+lines', 
+    name='Scatter Plot',
+    hovertemplate='<b>Date</b>: %{x}<br><b>Value</b>: %{y}<br><b>Extra Info</b>: %{text}<extra></extra>',
+    text=df['extra_info']  # Use the 'extra_info' column for hover text
+))
+
+
 fig.update_layout(
     xaxis=dict(
         tickmode='linear',       # Set to 'linear' to define specific tick values
