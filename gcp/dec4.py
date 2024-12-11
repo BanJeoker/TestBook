@@ -1,3 +1,7 @@
+lgb.plot_importance(lgb_reg, importance_type='split', max_num_features=10, title='Feature Importance')
+plt.show()
+
+
 import lightgbm as lgb
 import numpy as np
 from sklearn.metrics import mean_absolute_error
