@@ -1,3 +1,42 @@
+import lightgbm as lgb
+import numpy as np
+from sklearn.metrics import mean_absolute_error
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+
+# Assuming 'df' is your DataFrame and 'target' is the target column
+# Prepare the features (X) and target (y)
+X = df.drop(columns=['target'])  # Replace 'target' with your target column name
+y = df['target']                 # Replace 'target' with your target column name
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Normalize the data (scaling)
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# Create and train the LightGBM regressor model
+lgb_reg = lgb.LGBMRegressor(objective='regression', random_state=42)
+lgb_reg.fit(X_train_scaled, y_train)
+
+# Make predictions
+y_pred = lgb_reg.predict(X_test_scaled)
+
+# Calculate MAE
+mae = mean_absolute_error(y_test, y_pred)
+
+# Print MAE
+print(f"LightGBM Regression MAE: {mae:.4f}")
+
+
+
+
+
+
+
+
 import matplotlib.pyplot as plt
 
 # Assuming you've already trained 'lr' and 'lasso' and made predictions (as in the previous code)
