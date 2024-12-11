@@ -1,3 +1,14 @@
+fig.update_layout(
+    xaxis=dict(
+        tickmode='linear',       # Set to 'linear' to define specific tick values
+        tick0=1,                 # Start the ticks from 1
+        dtick=1,                 # Set the interval between ticks to 1
+        showgrid=True,           # Optional: Show the grid lines for better visibility
+    ),
+    title="Scatter Plot with More X-Axis Ticks"
+)
+
+
 import plotly.graph_objects as go
 
 # Assuming 'y_test_sorted' is your sorted y_test, and 'y_pred' is the predicted values
