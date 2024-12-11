@@ -1,3 +1,36 @@
+import plotly.graph_objects as go
+
+# Assuming 'y_test_sorted' is your sorted y_test, and 'y_pred' is the predicted values
+# Calculate the difference between y_test and y_pred
+difference = y_test_sorted - y_pred
+
+# If you want to plot against the 'date' column from your sorted test_data
+# Assuming 'test_data_sorted' has the 'date' column
+
+# Create the figure using Plotly
+fig = go.Figure()
+
+# Add the y_test line to the plot
+fig.add_trace(go.Scatter(x=test_data_sorted['date'], y=y_test_sorted, mode='lines', name='y_test', line=dict(color='blue')))
+
+# Add the difference line to the plot
+fig.add_trace(go.Scatter(x=test_data_sorted['date'], y=difference, mode='lines', name='Difference (y_test - y_pred)', line=dict(color='red')))
+
+# Update layout for the figure (add titles, labels, etc.)
+fig.update_layout(
+    title='y_test and Difference Between y_test and y_pred',
+    xaxis_title='Date',
+    yaxis_title='Value',
+    template='plotly_dark',  # Optional: use a dark template for aesthetics
+    autosize=True,
+    showlegend=True
+)
+
+# Display the plot
+fig.show()
+
+
+
 plt.gca().xaxis.set_major_locator(ticker.MaxNLocator(nbins=20))  # Adjust 'nbins' for more ticks
 
 import matplotlib.pyplot as plt
