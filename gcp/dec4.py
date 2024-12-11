@@ -1,3 +1,26 @@
+import matplotlib.pyplot as plt
+
+# Assuming 'y_test_sorted' is your sorted y_test, and 'y_pred' is the predicted values
+# Calculate the difference between y_test and y_pred
+difference = y_test_sorted - y_pred
+
+# If you want to plot against the 'date' column from your sorted test_data
+# Assuming 'test_data_sorted' has the 'date' column
+plt.plot(test_data_sorted['date'], y_test_sorted, label='y_test', color='blue')
+plt.plot(test_data_sorted['date'], difference, label='Difference (y_test - y_pred)', color='red')
+
+# Add labels and title
+plt.title('y_test and Difference Between y_test and y_pred')
+plt.xlabel('Date')
+plt.ylabel('Value')
+plt.legend()
+plt.grid(True)
+
+# Show the plot
+plt.show()
+
+
+
 lgb.plot_importance(lgb_reg, importance_type='split', max_num_features=10, title='Feature Importance')
 plt.show()
 
