@@ -1,3 +1,5 @@
+plt.gca().xaxis.set_major_locator(ticker.MaxNLocator(nbins=20))  # Adjust 'nbins' for more ticks
+
 import matplotlib.pyplot as plt
 
 # Assuming 'y_test_sorted' is your sorted y_test, and 'y_pred' is the predicted values
