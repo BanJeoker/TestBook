@@ -1,3 +1,9 @@
+cusips_to_drop = df[df['Spd'] < -40]['CUSIP'].unique()
+
+# Filter the DataFrame to remove these CUSIPs
+filtered_df = df[~df['CUSIP'].isin(cusips_to_drop)]
+
+
 import pandas as pd
 import plotly.express as px
 
