@@ -1,8 +1,15 @@
+df = pd.DataFrame.from_dict(sorted_dict, orient='index')
+
+# Transpose the DataFrame to get the desired format
+df = df.transpose()
+
+
 def sort_lists_by_timestamp(data_dict):
   """Sorts the inner lists of each key-value pair in the dictionary based on the timestamp.
 
   Args:
     data_dict: A dictionary where each key is a list of lists, and each inner list contains a double value and a timestamp.
+
 
   Returns:
     A new dictionary with the sorted inner lists.
