@@ -1,3 +1,26 @@
+import pandas as pd
+import plotly.express as px
+
+# Assuming you have a DataFrame named 'df' with columns 'CUSIP', 'valDate', and 'Spd'
+
+# Convert 'valDate' to a datetime format
+df['valDate'] = pd.to_datetime(df['valDate'])
+
+# Create the line plot using Plotly Express
+fig = px.line(df, x='valDate', y='Spd', color='CUSIP')
+
+# Customize the plot (optional)
+fig.update_layout(
+    title='Spd vs. Date by CUSIP',
+    xaxis_title='Date',
+    yaxis_title='Spd'
+)
+
+# Show the plot
+fig.show()
+
+
+
 df = pd.DataFrame.from_dict(sorted_dict, orient='index')
 
 # Transpose the DataFrame to get the desired format
