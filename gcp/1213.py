@@ -1,3 +1,18 @@
+for i, date in enumerate(dates):
+    fig.add_annotation(
+        x=date,
+        y=values[i],
+        text=date.strftime('%m/%d/%Y'),  # Format the date as a string
+        showarrow=False,
+        font=dict(size=10, color="black"),
+        xanchor="center",
+        yanchor="bottom",
+        valign="bottom",  # Position the text above the points
+        bgcolor="white"
+    )
+
+
+
 vertical_lines = pd.to_datetime(vertical_lines_str, format="%m/%d/%Y")
 
 # Add vertical lines at each date in the list
