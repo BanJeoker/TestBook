@@ -4,7 +4,7 @@ for i, date in enumerate(dates):
         y=values[i],
         text=date.strftime('%m/%d/%Y'),  # Format the date as a string
         showarrow=False,
-        font=dict(size=10, color="black"),
+        font=dict(size=10, color="black", angle=45),
         xanchor="center",
         yanchor="bottom",
         valign="bottom",  # Position the text above the points
