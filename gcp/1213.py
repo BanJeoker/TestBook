@@ -1,3 +1,7 @@
+fig.add_vline(x=3, line=dict(color="red", width=2, dash="dash"), name="Vertical Line")
+
+
+
 import pandas as pd
 
 # Sample DataFrame with datetime column
