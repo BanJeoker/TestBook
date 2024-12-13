@@ -1,3 +1,24 @@
+import pandas as pd
+
+# Sample DataFrame
+data = {
+    'ID': [1, 2, 3, 2, 4, 5, 5],
+    'Value': [10, 20, 15, 30, 25, 35, 40]
+}
+df = pd.DataFrame(data)
+
+# Sort by 'Value' in descending order to prioritize highest values
+df_sorted = df.sort_values(by='Value', ascending=False)
+
+# Drop duplicates based on 'ID', keeping the first (highest value) occurrence
+df_unique = df_sorted.drop_duplicates(subset='ID', keep='first')
+
+# Select the top 2 rows with the highest values
+top_2 = df_unique.head(2)
+
+print(top_2)
+
+
 for i, date in enumerate(dates):
     fig.add_annotation(
         x=date,
