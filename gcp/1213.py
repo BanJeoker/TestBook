@@ -1,12 +1,8 @@
-vertical_lines = [
-    pd.to_datetime("2024-01-02"),
-    pd.to_datetime("2024-01-04")
-]
+vertical_lines = pd.to_datetime(vertical_lines_str, format="%m/%d/%Y")
 
 # Add vertical lines at each date in the list
 for date in vertical_lines:
     fig.add_vline(x=date, line=dict(color="red", width=2, dash="dash"), name=f"Vertical Line {date.date()}")
-
 
 
 fig.add_vline(x=3, line=dict(color="red", width=2, dash="dash"), name="Vertical Line")
