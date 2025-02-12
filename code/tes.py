@@ -1,3 +1,6 @@
+for col in df.select_dtypes(include=[np.float64]).columns:
+    df[col] = df[col].astype(object).map(float)
+
 df.loc[df['type'].str.contains('value change', na=False), df.columns != 'type'] = \
     df.loc[df['type'].str.contains('value change', na=False), df.columns != 'type'].applymap(format_value)
 
