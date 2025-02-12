@@ -1,3 +1,7 @@
+df.loc[df['type'].str.contains('value change', na=False), df.columns != 'type'] = \
+    df.loc[df['type'].str.contains('value change', na=False), df.columns != 'type'].applymap(format_value)
+
+
 import pandas as pd
 
 # Sample DataFrame
