@@ -1,3 +1,37 @@
+from google.cloud import storage
+import os
+
+# Initialize the GCP storage client
+client = storage.Client()
+
+# Set the path to your root folder containing subfolders
+root_folder = '/path/to/your/root/folder'
+bucket_name = 'your-destination-bucket'
+
+# Get the bucket object
+bucket = client.get_bucket(bucket_name)
+
+# Iterate through each subfolder in the root folder
+for subfolder in os.listdir(root_folder):
+    subfolder_path = os.path.join(root_folder, subfolder)
+
+    # Check if it's a folder (not a file)
+    if os.path.isdir(subfolder_path):
+        # Iterate over the files inside the subfolder
+        for file_name in os.listdir(subfolder_path):
+            local_file = os.path.join(subfolder_path, file_name)
+
+            # Check if it's a JSON file
+            if os.path.isfile(local_file) and file_name.endswith('.json'):
+                # Define the destination blob (object) name
+                blob = bucket.blob(f"{subfolder}/{file_name}")
+
+                # Upload the file to the bucket
+                blob.upload_from_filename(local_file)
+                print(f"Copied {file_name} from {subfolder} to {bucket_name}")
+
+
+
 import os
 import subprocess
 
