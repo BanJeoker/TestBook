@@ -1,4 +1,36 @@
 from google.cloud import storage
+
+# Initialize the GCP storage client
+client = storage.Client()
+
+# Set the name of the source and destination buckets
+source_bucket_name = 'your-source-bucket'
+destination_bucket_name = 'your-destination-bucket'
+
+# Get the source and destination bucket objects
+source_bucket = client.get_bucket(source_bucket_name)
+destination_bucket = client.get_bucket(destination_bucket_name)
+
+# Specify the root folder inside the source bucket
+root_folder = 'your-root-folder/'  # The root folder within the source bucket
+
+# List all objects (files/folders) within the root folder
+blobs = source_bucket.list_blobs(prefix=root_folder)
+
+# Iterate over each blob (file or folder)
+for blob in blobs:
+    # We are only interested in files, not folders
+    if blob.name.endswith('.json'):  # You can adjust this condition if needed
+        # Define the destination blob (object) name in the destination bucket
+        destination_blob = destination_bucket.blob(blob.name)
+
+        # Copy the file from the source bucket to the destination bucket
+        destination_blob.copy_from(blob)
+        print(f"Copied {blob.name} from {source_bucket_name} to {destination_bucket_name}")
+
+
+
+from google.cloud import storage
 import os
 
 # Initialize the GCP storage client
