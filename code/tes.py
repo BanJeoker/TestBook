@@ -1,3 +1,25 @@
+import os
+import subprocess
+
+# Set the path to your local folder and the GCP bucket URI
+local_folder = '/path/to/your/folder'
+bucket_uri = 'gs://your-bucket-name/'
+
+# Iterate over each file in the local folder
+for file_name in os.listdir(local_folder):
+    local_file = os.path.join(local_folder, file_name)
+    
+    # Check if it's a file (not a subdirectory)
+    if os.path.isfile(local_file):
+        # Construct the gsutil cp command
+        command = f"gsutil cp {local_file} {bucket_uri}"
+        
+        # Execute the command
+        subprocess.run(command, shell=True, check=True)
+        print(f"Copied {file_name} to {bucket_uri}")
+
+
+
 for col in df.select_dtypes(include=[np.float64]).columns:
     df[col] = df[col].astype(object).map(float)
 
