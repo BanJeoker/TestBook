@@ -1,9 +1,4 @@
-def is_numeric_string(value):
-    if value.isdigit():  # Checks if it's an integer (e.g., "123")
-        return True
-    elif value.replace('.', '', 1).isdigit() and value.count('.') < 2:  # Checks for floats like "3.14"
-        return True
-    return False
+
 
 # Test cases
 print(is_numeric_string("123"))      # True
