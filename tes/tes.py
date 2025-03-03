@@ -1,3 +1,18 @@
+def is_numeric_string(value):
+    if value.isdigit():  # Checks if it's an integer (e.g., "123")
+        return True
+    elif value.replace('.', '', 1).isdigit() and value.count('.') < 2:  # Checks for floats like "3.14"
+        return True
+    return False
+
+# Test cases
+print(is_numeric_string("123"))      # True
+print(is_numeric_string("3.14"))     # True
+print(is_numeric_string("hello"))    # False
+print(is_numeric_string("123abc"))   # False
+print(is_numeric_string("3.14.5"))   # False
+
+
 import pandas as pd
 
 pd.set_option('display.float_format', '{:.10f}'.format)  # Show full numbers with 10 decimal places
