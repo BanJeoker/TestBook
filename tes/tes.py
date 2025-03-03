@@ -1,5 +1,10 @@
 import pandas as pd
 
+pd.set_option('display.float_format', '{:.10f}'.format)  # Show full numbers with 10 decimal places
+
+
+import pandas as pd
+
 # Sample DataFrame
 data = {'ID': [1, 1, 1, 2, 2, 3, 3, 3],
         'Category': ['A', 'A', 'A', 'B', 'B', 'C', 'C', 'C'],
