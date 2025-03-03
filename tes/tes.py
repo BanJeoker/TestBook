@@ -1,3 +1,24 @@
+import pandas as pd
+
+# Sample DataFrame
+data = {'ID': [1, 1, 1, 2, 2, 3, 3, 3],
+        'Category': ['A', 'A', 'A', 'B', 'B', 'C', 'C', 'C'],
+        'Text': ['apple', 'banana', 'cherry', 'dog', 'elephant', 'fish', 'goat', 'hen']}
+df = pd.DataFrame(data)
+
+# Group by 'ID' and 'Category', and concatenate 'Text' column
+grouped_df = df.groupby(['ID', 'Category'])['Text'].agg('.'.join).reset_index()
+
+# Add as a new column (optional, if you want to modify the original DataFrame)
+grouped_df['Aggregated_Text'] = grouped_df['Text']
+
+# Drop the old 'Text' column if not needed
+grouped_df = grouped_df.drop(columns=['Text'])
+
+# Display new DataFrame
+print(grouped_df)
+
+
 
 import pandas as pd
 import xml.etree.ElementTree as ET
