@@ -1,11 +1,11 @@
-
-
-# Test cases
-print(is_numeric_string("123"))      # True
-print(is_numeric_string("3.14"))     # True
-print(is_numeric_string("hello"))    # False
-print(is_numeric_string("123abc"))   # False
-print(is_numeric_string("3.14.5"))   # False
+def is_numeric_string(value):
+    if isinstance(value, str):  # Ensure input is a string
+        try:
+            float(value)  # Try converting to float
+            return True
+        except ValueError:
+            return False
+    return False  # If not a string, return False
 
 
 import pandas as pd
