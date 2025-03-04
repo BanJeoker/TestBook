@@ -1,3 +1,25 @@
+import pandas as pd
+
+# Sample DataFrame
+df = pd.DataFrame({
+    'role': ['Manager', 'Analyst', 'Executive', 'Intern', 'Associate'],
+    'salary': [80000, 60000, 120000, 30000, 50000]
+})
+
+# Define the custom sorting order
+role_order = ['Intern', 'Analyst', 'Associate', 'Manager', 'Executive']
+
+# Convert the column to a categorical type with the defined order
+df['role'] = pd.Categorical(df['role'], categories=role_order, ordered=True)
+
+# Sort by the defined order
+df_sorted = df.sort_values('role')
+
+# Display the sorted DataFrame
+import ace_tools as tools
+tools.display_dataframe_to_user(name="Sorted Roles", dataframe=df_sorted)
+
+
 def is_numeric_string(value):
     if isinstance(value, str):  # Ensure input is a string
         try:
