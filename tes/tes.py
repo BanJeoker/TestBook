@@ -1,3 +1,20 @@
+import json
+
+# Sample string
+data_string = "This is a sample text"
+
+# Convert the string into a JSON object (as JSONL expects each line to be a valid JSON object)
+jsonl_data = {"text": data_string}
+
+# Save as a JSONL file
+file_path = "output.jsonl"
+with open(file_path, "w", encoding="utf-8") as file:
+    json.dump(jsonl_data, file)
+    file.write("\n")  # Newline to conform with JSONL format
+
+print(f"Saved to {file_path}")
+
+
 import pandas as pd
 
 # Sample DataFrame
