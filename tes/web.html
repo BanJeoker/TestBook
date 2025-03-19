@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Renderer</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <textarea id="markdownInput" rows="5" cols="50">**Bold Text** and _Italic Text_</textarea>
+    <button onclick="renderMarkdown()">Render</button>
+    <div id="output"></div>
+
+    <script>
+        function renderMarkdown() {
+            const input = document.getElementById("markdownInput").value;
+            document.getElementById("output").innerHTML = marked.parse(input);
+        }
+    </script>
+</body>
+</html>
