@@ -1,15 +1,16 @@
 import asyncio
 
-async def greet(name):
-    print(f"Hello, {name}")
-    await asyncio.sleep(1)
-    print(f"Goodbye, {name}")
+shared_counter = 0
+
+async def increment():
+    global shared_counter
+    temp = shared_counter
+    await asyncio.sleep(0.1)  # Simulate some delay
+    shared_counter = temp + 1
 
 async def main():
-    await asyncio.gather(
-        greet("Alice"),
-        greet("Bob"),
-        greet("Charlie")
-    )
+    await asyncio.gather(increment(), increment(), increment())
 
 await main()
+print("Final counter:", shared_counter)
+
