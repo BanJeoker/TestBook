@@ -1,11 +1,15 @@
 import asyncio
 
-async def say_hello():
-    print("Hello...")
-    await asyncio.sleep(1)  # Simulates waiting (e.g., for API)
-    print("...World!")
+async def greet(name):
+    print(f"Hello, {name}")
+    await asyncio.sleep(1)
+    print(f"Goodbye, {name}")
 
 async def main():
-    await say_hello()
+    await asyncio.gather(
+        greet("Alice"),
+        greet("Bob"),
+        greet("Charlie")
+    )
 
-asyncio.run(main())  # Kicks off the event loop
+await main()
