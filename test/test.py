@@ -1,6 +1,34 @@
+
+
 from rich.console import Console
 from rich.markdown import Markdown
+from rich.text impofrom rich.console import Console
+from rich.markdown import Markdown
 from rich.text import Text
+
+console = Console()
+
+# LLM output with markdown syntax
+llm_output = """**Balance Sheet**
+* Assets
+* Liabilities
+"""
+
+# Render markdown
+md = Markdown(llm_output)
+text = console.render_str(str(md))  # Convert to raw string to find and re-style
+
+# Now manually re-color the "**Balance Sheet**" text in red and bold
+text_obj = Text.from_markup(str(md))
+title = "Balance Sheet"
+start = text_obj.plain.find(title)
+
+if start != -1:
+    end = start + len(title)
+    text_obj.stylize("bold red", start, end)
+
+console.print(text_obj)
+rt Text
 
 console = Console()
 
