@@ -1,11 +1,14 @@
-from rich.console import Console
-from rich.markdown import Markdown
-from rich.text import Text
+import pandas as pd
 
-console = Console()
+# Ensure the column is datetime
+df['STATEMENTENDDATE'] = pd.to_datetime(df['STATEMENTENDDATE'])
 
-llm_output = "**Balance Sheet**, this is a summary of the company..."
-# Detect and replace the bold title with colored rich markup
-llm_output = llm_output.replace("**Balance Sheet**", "[bold red]Balance Sheet[/]")
+# Extract month and day
+month = df['STATEMENTENDDATE'].dt.month
+day = df['STATEMENTENDDATE'].dt.day
 
-console.print(llm_output, markup=True)
+# Define mask: within Dec 27–31 or Jan 1–5
+mask = ((month == 12) & (day >= 27)) | ((month == 1) & (day <= 5))
+
+# Keep only year-end rows
+df_year_end = df[mask].copy()
