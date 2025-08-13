@@ -1,0 +1,7 @@
+in powershell: jupyter kernelspec list
+Open the folder for your myenv kernel and edit kernel.json:
+add -s to the kernel’s argv
+original it might be: "argv": ["...\\myenv\\Scripts\\python.exe", "-m", "ipykernel", "-f", "{connection_file}"]
+change it to: "argv": ["...\\myenv\\Scripts\\python.exe", "-s", "-m", "ipykernel", "-f", "{connection_file}"]
+(-s = “don’t add user site dir to sys.path”.)
+
