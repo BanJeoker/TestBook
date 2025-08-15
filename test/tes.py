@@ -1,3 +1,7 @@
+from IPython.display import display, HTML
+display(HTML("<style>.output_scroll {height:auto !important; max-height:none !important;}</style>"))
+
+
 import sys, site, pathlib
 print("Interpreter:", sys.executable)                 # should be ...\myenv\Scripts\python.exe
 print("User-site :", site.getusersitepackages())      # typically ...\AppData\Roaming\Python\Python311\site-packages
